@@ -2,6 +2,7 @@
 #include <SPI.h>
 #include <adafruit_ST7735.h>
 #include <adafruit_GFX.h>
+#include "esp_chip_info.h"
 
 #define TFT_CS 15
 #define TFT_RST 4
@@ -90,9 +91,37 @@ void loop()
     {
       tft.print(millis() / 100);
     }
+    else if (cmd == "rand")
+    {
+      if (arg1 != NULL && arg2 != NULL)
+      {
+        tft.println(random(atol(arg1), atol(arg2)));
+      }
+      else
+      {
+        tft.println(F("use the int/int arguments"));
+      }
+    }
+    else if (cmd == "cpu")
+    {
+      esp_chip_info_t cpu_inf;
+      esp_chip_info(&cpu_inf);
+
+      tft.print(F("model "));
+      tft.println(ESP.getChipModel());
+
+      tft.print(F("cores "));
+      tft.println(cpu_inf.cores);
+
+      tft.print(F("freq mhz "));
+      tft.println(ESP.getCpuFreqMHz());
+
+      tft.print(F("rev "));
+      tft.println(ESP.getChipRevision());
+    }
     else
     {
-      tft.print("unknow command");
+      tft.print("unknown command");
     }
   }
 }
