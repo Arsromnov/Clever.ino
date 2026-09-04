@@ -119,6 +119,18 @@ void loop()
       tft.print(F("rev "));
       tft.println(ESP.getChipRevision());
     }
+    else if (cmd == "tftoff")
+    {
+      if (arg1 != NULL)
+      {
+        int val = atoi(arg1);
+        tft.enableDisplay(val);
+      }
+      else
+      {
+        tft.println(F("use the 1(true)/0(false) arguments"));
+      }
+    }
     else
     {
       tft.print("unknown command");
