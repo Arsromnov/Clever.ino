@@ -1,4 +1,4 @@
-# Cleverino
+# Clever.ino
 Simple FakeOs for Arduino/ESP32 
 
 > [!NOTE]

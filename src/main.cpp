@@ -20,7 +20,7 @@ void setup()
   tft.setCursor(4, 6);
   tft.setTextColor(ST77XX_GREEN);
   tft.setTextSize(1);
-  tft.println("Cleverino32 2026.1");
+  tft.println("Clever.ino32 2026.1");
 }
 
 void loop()
@@ -50,7 +50,7 @@ void loop()
 
     if (cmd == "help")
     {
-      tft.print(F("classic: READ HELP ON README"));
+      tft.print(F("READ HELP ON README"));
     }
     else if (cmd == "rst")
     {
