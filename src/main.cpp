@@ -3,6 +3,7 @@
 #include <adafruit_ST7735.h>
 #include <adafruit_GFX.h>
 #include "esp_chip_info.h"
+#include <WiFi.h>
 
 #define TFT_CS 15
 #define TFT_RST 4
@@ -129,6 +130,49 @@ void loop()
       else
       {
         tft.println(F("use the 1(true)/0(false) arguments"));
+      }
+    }
+    else if (cmd == "flash")
+    {
+      uint32_t fsiz = ESP.getFlashChipSize();
+      uint32_t fspd = ESP.getFlashChipSpeed();
+      uint32_t skrt = ESP.getFreeSketchSpace();
+
+      tft.print("flash size ");
+      tft.println((float)fsiz / 1024.0, 1);
+
+      tft.print("flash speed ");
+      tft.println((float)fspd / 1000000.0, 1);
+
+      tft.print("free scratch space ");
+      tft.println((float)skrt / 1024.0, 1);
+    }
+    else if (cmd == "wifi")
+    {
+      if (arg1 != NULL)
+      {
+        if (strcmp(arg1, "scan") == 0)
+        {  
+          
+          WiFi.scanDelete(); 
+          int n = WiFi.scanNetworks();
+        
+          if (n == 0) {
+            tft.println("no networks found");
+          } else {
+             
+
+            for (int i = 0; i < n; ++i) {
+              tft.print(WiFi.SSID(i));
+              tft.print(" ");
+              tft.print(WiFi.RSSI(i));
+              tft.print(" ");
+              tft.println("dBm");
+              tft.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN) ? " [O]" : " [W]");
+
+            }
+          }
+        }
       }
     }
     else
