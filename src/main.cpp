@@ -100,7 +100,7 @@ void loop()
       }
       else
       {
-        tft.println(F("use the int/int arguments"));
+        tft.println(F("use the <int>/<int> arguments"));
       }
     }
     else if (cmd == "cpu")
@@ -152,27 +152,133 @@ void loop()
       if (arg1 != NULL)
       {
         if (strcmp(arg1, "scan") == 0)
-        {  
-          
-          WiFi.scanDelete(); 
+        {
+          tft.println("Please wait");
+          tft.println("");
+          WiFi.scanDelete();
           int n = WiFi.scanNetworks();
-        
-          if (n == 0) {
-            tft.println("no networks found");
-          } else {
-             
 
-            for (int i = 0; i < n; ++i) {
+          if (n == 0)
+          {
+            tft.println("no networks found");
+          }
+          else
+          {
+
+            for (int i = 0; i < n; ++i)
+            {
               tft.print(WiFi.SSID(i));
               tft.print(" ");
               tft.print(WiFi.RSSI(i));
               tft.print(" ");
               tft.println("dBm");
               tft.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN) ? " [O]" : " [W]");
-
             }
           }
         }
+        else if (strcmp(arg1, "mac") == 0)
+        {
+          tft.print("MAC ");
+          tft.println(WiFi.macAddress());
+        }
+        else
+        {
+          tft.print("use the <string> argument");
+        }
+      }
+    }
+    else if (cmd == "sdk")
+    {
+      tft.println(ESP.getSdkVersion());
+    }
+    else if (cmd == "tempr")
+    {
+      if (arg1 != NULL)
+      {
+        if (atol(arg1) < 16)
+        {
+          int x = atol(arg1);
+          double prev = 0;
+          double curr = 0;
+
+          for (size_t i = 0; i < x; i++)
+          {
+            curr = temperatureRead();
+
+            if (curr > prev)
+            {
+              tft.print(curr);
+              tft.println("C   +");
+            }
+            else if (curr > prev)
+            {
+              tft.print(curr);
+              tft.println("C   -");
+            }
+            else
+            {
+              tft.print(curr);
+              tft.println("C   >");
+            }
+            prev = curr;
+            delay(500);
+          }
+        }
+        else
+        {
+          tft.println("use an argument less than 45");
+        }
+      }
+      else
+      {
+        tft.println("use the <int> argument");
+      }
+      
+    }
+    else if (cmd == "rot")
+    {
+      if (arg1 != NULL)
+      {
+        if (atol(arg1) == 1)
+        {
+          tft.fillScreen(ST77XX_BLACK);
+          tft.setRotation(0);
+          tft.setCursor(4, 6);
+          tft.setTextColor(ST77XX_GREEN);
+          tft.setTextSize(1);
+          tft.println("Clever.ino32 2026.1");
+        }
+        else if (atol(arg1) == 2)
+        {
+          tft.fillScreen(ST77XX_BLACK);
+          tft.setRotation(1);
+          tft.setCursor(4, 6);
+          tft.setTextColor(ST77XX_GREEN);
+          tft.setTextSize(1);
+          tft.println("Clever.ino32 2026.1");
+        }
+        else if (atol(arg1) == 3)
+        {
+          tft.fillScreen(ST77XX_BLACK);
+          tft.setRotation(2);
+          tft.setCursor(4, 6);
+          tft.setTextColor(ST77XX_GREEN);
+          tft.setTextSize(1);
+          tft.println("Clever.ino32 2026.1");
+        }
+        else if (atol(arg1) == 4)
+        {
+          tft.fillScreen(ST77XX_BLACK);
+          tft.setRotation(3);
+          tft.setCursor(4, 6);
+          tft.setTextColor(ST77XX_GREEN);
+          tft.setTextSize(1);
+          tft.println("Clever.ino32 2026.1");
+        }
+      }
+      else
+      {
+        tft.println("if you want to set custom rotation,  use the <int> argument");
       }
     }
     else
