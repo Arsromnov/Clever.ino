@@ -6,8 +6,11 @@ Simple FakeOs for Arduino/ESP32
 ![Language](https://img.shields.io/badge/Language-C%2B%2B-blue?style=flat&logo=cplusplus)
 ![Версия Проекта](https://img.shields.io/badge/Clever.ino32-2026.1-yellow?style=fla)
 
-> [!NOTE]
+> [!TIP]
 > Project has 2 version, legacy(for uno, and SSD1306) / 32(for ESP32 and TFT with ST7735 128x160, 1.8")
+
+> [!WARNING]
+> Recommended for use ONLY on the classic ESP32 (likely temporarily).
 
 
 ### How to setup?

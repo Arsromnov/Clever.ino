@@ -28,7 +28,7 @@ void loop()
 {
   if (Serial.available() > 0)
   {
-    String input = Serial.readString();
+    String input = Serial.readStringUntil('\n');
     input.trim();
 
     char buf[64];
@@ -42,7 +42,7 @@ void loop()
       return;
     String cmd = String(comd);
 
-    tft.fillRect(0, 16, 160, 144, ST77XX_BLACK);
+    tft.fillRect(0, 16, tft.width(), tft.height() - 16, ST77XX_BLACK);
     tft.setCursor(0, 20);
     tft.setTextColor(ST77XX_WHITE);
     tft.print(">");
