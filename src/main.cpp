@@ -221,7 +221,7 @@ void loop()
               tft.println("C   >");
             }
             prev = curr;
-            delay(500);
+            delay(atol(arg2));
           }
         }
         else

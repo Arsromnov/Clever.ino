@@ -58,7 +58,7 @@ Simple FakeOs for Arduino/ESP32
 | `flash` | Show information about flash | |
 | `wifi` | WiFi functions | `mac` (show MAC address) / `scan` (scan networks) |
 | `sdk` | Show SDK version | |
-| `tempr` | Display of temperature from the built-in ESP32 sensor | `<int>` (< 15) |
+| `tempr` | Display of temperature from the built-in ESP32 sensor | `<int>` (< 15)/<int> (delay time) |
 | `rot` | Set screen rotation | `<int>` (1, 2, 3, 4) |
 
 
