@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <SPI.h>
-#include <adafruit_ST7735.h>
-#include <adafruit_GFX.h>
+#include <Adafruit_ST7735.h>
+#include <Adafruit_GFX.h>
 #include "esp_chip_info.h"
 #include <WiFi.h>
 
@@ -210,7 +210,7 @@ void loop()
               tft.print(curr);
               tft.println("C   +");
             }
-            else if (curr > prev)
+            else if (curr < prev)
             {
               tft.print(curr);
               tft.println("C   -");
@@ -226,7 +226,7 @@ void loop()
         }
         else
         {
-          tft.println("use an argument less than 45");
+          tft.println("use an argument less than 15");
         }
       }
       else
