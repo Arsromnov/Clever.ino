@@ -39,4 +39,23 @@ Simple FakeOs for Arduino/ESP32
 
 3.Open clever.ino file on arduino IDE and run it
 
+
 ### Commands
+
+| Command | Action | Arguments |
+| :--- | :--- | :--- |
+| `help` | Displays the text "see help on readme" (essentially a debug command) | |
+| `rst` | Board reboot | |
+| `inv` | Inversion control (enable/disable) | `1` (true) / `0` (false) |
+| `ram` | Show RAM information | |
+| `utime` | Display of the time elapsed since firmware execution began | |
+| `rand` | Generating random int | `<int>` (min) / `<int>` (max) |
+| `cpu` | Show CPU information | |
+| `tftoff` | Screen control (enable/disable) | `1` (true) / `0` (false) |
+| `flash` | Show information about flash | |
+| `wifi` | WiFi functions | `mac` (show MAC address) / `scan` (scan networks) |
+| `sdk` | Show SDK version | |
+| `tempr` | Display of temperature from the built-in ESP32 sensor | `<int>` (< 15) |
+| `rot` | Set screen rotation | `<int>` (1, 2, 3, 4) |
+
+
